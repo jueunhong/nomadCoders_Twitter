@@ -11,7 +11,7 @@ import Navigation from "components/navigation";
 const AppRouter = ({isLoggedIn, userObj}) => {
     return(
         <Router>
-            {isLoggedIn && <Navigation />}
+            {isLoggedIn && <Navigation userObj={userObj}/>}
             <Routes>
                 {isLoggedIn ? (
                 <>
