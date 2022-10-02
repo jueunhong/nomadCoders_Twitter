@@ -2,7 +2,7 @@ import { authService, dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Profile = ({ userObj }) => {
+const Profile = ({ refreshUser , userObj }) => {
     const navigate = useNavigate();
     const onLogOutClick = () => {
         authService.signOut();
@@ -28,6 +28,7 @@ const Profile = ({ userObj }) => {
             await userObj.updateProfile({
                 displayName: newDisplayName
             });
+            refreshUser();
         }
     }
     return(
