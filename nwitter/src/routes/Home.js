@@ -3,6 +3,7 @@ import NweetFactory from "components/NweetFactory";
 import { dbService } from "fbase";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import styles from "../components/Nweet.module.css"
 
 
 const Home = ({ userObj }) => {
@@ -21,9 +22,9 @@ const Home = ({ userObj }) => {
 
     
     return (
-    <div>
+    <div className={styles.container}>
         <NweetFactory userObj={userObj} />
-        <div>
+        <div style={{ marginTop: 30 }}>
             {nweets.map((nweet) => <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>)}
         </div>
     </div>)
