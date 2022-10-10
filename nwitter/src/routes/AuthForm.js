@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
+import styles from "./AuthForm.module.css";
 
 const AuthForm = () => {
     const [email, setEmail] = useState("");
@@ -36,25 +37,32 @@ const AuthForm = () => {
     const toggleAccount = () => setNewAccount(prev => !prev);
     return(
     <>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className={styles.container}>
             <input 
                 name="email"
                 type="text"
                 placeholder="Email" 
                 required
                 value={email}
-                onChange={onChange} />
+                onChange={onChange}
+                className={styles.authInput} />
             <input 
                 name="password"
                 type="password"
                 placeholder="Password"
                 required
                 value={password}
-                onChange={onChange} />
-            <input type="submit" value={newAccount ? "Create Account" : "Sign In"} />
-            {error}
+                onChange={onChange}
+                className={styles.authInput} />
+            <input 
+                type="submit"
+                className={`${styles.authInput} ${styles.authSubmit}`}
+                value={newAccount ? "Create Account" : "Sign In"} />
+            {error && <span className={styles.authError}>{error}</span>}
         </form>
-        <span onClick={toggleAccount}>{newAccount ? "Sign In" : "Create Account"}</span>
+        <span onClick={toggleAccount} className={styles.authSwitch}>
+            {newAccount ? "Sign In" : "Create Account"}
+        </span>
     </>
     )
 };
